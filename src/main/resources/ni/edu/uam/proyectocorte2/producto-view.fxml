@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="720.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.proyectocorte2.controller.ProductoController">
+
+    <top>
+        <Label text="Catálogo de productos - Papelería Campus" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+            <BorderPane.margin>
+                <Insets bottom="15.0" top="15.0" />
+            </BorderPane.margin>
+        </Label>
+    </top>
+
+    <center>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+            <children>
+
+                <!-- FORMULARIO -->
+                <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="90.0" />
+                        <ColumnConstraints minWidth="260.0" />
+                        <ColumnConstraints minWidth="90.0" />
+                        <ColumnConstraints minWidth="260.0" />
+                    </columnConstraints>
+
+                    <Label text="ID" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="txtId" editable="false" promptText="Automático" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label text="Código" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                    <TextField fx:id="txtCodigo" promptText="Ej. P001 (máx. 10)" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                    <Label text="Nombre" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtNombre" promptText="Nombre del producto (3 a 80)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Categoría" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="cmbCategoria" prefWidth="260.0" promptText="Seleccione la categoría" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                    <Label text="Precio (C$)" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtPrecio" promptText="Ej. 12.50" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <Label text="Stock" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtStock" promptText="Entero desde 0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                </GridPane>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#limpiarFormulario" text="Nuevo / Limpiar formulario" />
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+                        <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
+                    </children>
+                </HBox>
+
+                <Separator />
+
+                <!-- BÚSQUEDA Y FILTROS -->
+                <Label text="Búsqueda y filtros">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+
+                <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="90.0" />
+                        <ColumnConstraints minWidth="260.0" />
+                        <ColumnConstraints minWidth="90.0" />
+                        <ColumnConstraints minWidth="260.0" />
+                    </columnConstraints>
+
+                    <Label text="Texto" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="txtBuscar" promptText="Nombre o código" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label text="Categoría" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="cmbFiltroCategoria" prefWidth="260.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                    <CheckBox fx:id="chkSoloExistencias" mnemonicParsing="false" text="Solo con existencias" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                </GridPane>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+                        <Button fx:id="btnLimpiarFiltros" mnemonicParsing="false" onAction="#limpiarFiltros" text="Limpiar filtros" />
+                        <Button fx:id="btnRecargar" mnemonicParsing="false" onAction="#recargar" text="Recargar" />
+                        <Label fx:id="lblContador" text="Registros visibles: 0">
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+
+                <!-- TABLA -->
+                <TableView fx:id="tblProductos" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="colCodigo" prefWidth="110.0" text="Código" />
+                        <TableColumn fx:id="colNombre" prefWidth="280.0" text="Nombre" />
+                        <TableColumn fx:id="colCategoria" prefWidth="140.0" text="Categoría" />
+                        <TableColumn fx:id="colPrecio" prefWidth="110.0" text="Precio (C$)" />
+                        <TableColumn fx:id="colStock" prefWidth="90.0" text="Stock" />
+                    </columns>
+                </TableView>
+
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
